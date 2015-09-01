@@ -135,7 +135,9 @@ res.setText(res.getText()+"1");
            }
         });
         btEqual.setOnClickListener(new View.OnClickListener(){
-            public void onClick
+            public void onClick(View v){
+
+            }
         });
 
     }
