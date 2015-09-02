@@ -1,22 +1,18 @@
 package com.hosen.khp.myapplications;
 
 import android.app.Activity;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
     Double num1=0.0;
     Double num2=0.0;
     Double result= 0.0;
-    String operator="";
+    Character operator = new Character(Character.MAX_VALUE);
 
 
     public MainActivity() {
@@ -29,7 +25,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
        final EditText  res = (EditText) findViewById(R.id.editText);
-        Button bt0,bt1,bt2,bt3,bt4,bt5,bt6,bt7,bt8,bt9,btDot,btAdd,btSub,btMulti,btDevide,btPow,btSqrt,
+        final Button bt0,bt1,bt2,bt3,bt4,bt5,bt6,bt7,bt8,bt9,btDot,btAdd,btSub,btMulti,btDevide,btPow,btSqrt,
                 btClear,btBack,btEqual,btMS,btMR,btMC;
 
         bt0 = (Button)findViewById(R.id.button0);
@@ -129,14 +125,98 @@ res.setText(res.getText()+"1");
         });
         btAdd.setOnClickListener(new View.OnClickListener(){
            public void onClick(View v) {
-               num1= Double.parseDouble(res.getText().toString());
+               try {
+                   num1 = Double.parseDouble(res.getText().toString());
+               }catch(Exception e){
+                  System.out.print("Wrong button pressed");
+               }
                res.setText("");
-               operator="+";
+               operator='+';
            }
+        });
+        btSub.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    num1 = Double.parseDouble(res.getText().toString());
+                }catch(Exception e){
+                    System.out.print("Wrong button pressed");
+                }                res.setText("");
+                btSub.getText();
+                operator='-';
+            }
+        });
+        btMulti.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    num1 = Double.parseDouble(res.getText().toString());
+                }catch(Exception e){
+                    System.out.print("Wrong button pressed");
+                }                res.setText("");
+                operator='*';
+            }
+        });
+        btDevide.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    num1 = Double.parseDouble(res.getText().toString());
+                }catch(Exception e){
+                    System.out.print("Wrong button pressed");
+                }                res.setText("");
+                operator='/';
+            }
+        });
+        btPow.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    num1 = Double.parseDouble(res.getText().toString());
+                }catch(Exception e){
+                    System.out.print("Wrong button pressed");
+                }                res.setText("");
+                operator='^';
+            }
+        });
+        btSqrt.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                try {
+                    num1 = Double.parseDouble(res.getText().toString());
+                }catch(Exception e){
+                    System.out.print("Wrong button pressed");
+                }                res.setText("");
+                operator='s';
+            }
         });
         btEqual.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+                try {
+                    num2 = Double.parseDouble(res.getText().toString());
+                }catch(Exception e){
+                    System.out.print("Wrong button pressed");
+                }                res.setText("");
+                switch (operator) {
+                    case '+':
+                        result = num1 + num2;
+                        break;
+                    case '-':
+                        result = num1 - num2;
+                        break;
+                    case '*':
+                        result = num1 * num2;
+                        break;
+                    case '/':
+                        result = num1 / num2;
+                        break;
+                    case '^':
+                        result= Math.pow(num1, num2);
+                        break;
+                    case 's':
+                        result= Math.pow(num1,(1/num2));
+                        break;
 
+                };
+                res.setText(result.toString());
+                num1=0.0;
+                num2=0.0;
+                operator=' ';
             }
         });
 

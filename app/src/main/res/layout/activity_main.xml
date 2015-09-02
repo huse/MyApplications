@@ -244,5 +244,16 @@
             android:layout_marginTop="5dp"
 
             />
+        <Button
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:text="-+"
+            android:id="@+id/buttonMinus"
+            android:layout_below="@+id/buttonClear"
+            android:layout_toRightOf="@+id/buttonEqual"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+
+            />
     </RelativeLayout>
 </RelativeLayout>
