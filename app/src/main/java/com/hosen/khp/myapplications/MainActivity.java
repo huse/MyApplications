@@ -7,12 +7,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
     Double num1=0.0;
     Double num2=0.0;
     Double result= 0.0;
     Double memory=0.0;
+    Double minus = 0.0;
     Character operator = new Character(Character.MAX_VALUE);
 
 
@@ -25,12 +27,15 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       final EditText  res = (EditText) findViewById(R.id.editText);
+      // final EditText  res = (EditText) findViewById(R.id.editText);
+        final TextView res = (TextView) findViewById(R.id.textViewMain);
+        final TextView mem = (TextView) findViewById(R.id.textViewMemory);
+        final TextView formul = (TextView) findViewById(R.id.textViewFormula);
         final Button bt0,bt1,bt2,bt3,bt4,bt5,bt6,bt7,bt8,bt9,btDot,btAdd,btSub,btMulti,btDevide,btPow,btSqrt,
                 btClear,btBack,btEqual,btMS,btMR,btMC,btMinus;
 
 
-        res.setText(String.valueOf("I'm creazy."));
+        res.setText(String.valueOf(""));
         bt0 = (Button)findViewById(R.id.button0);
         bt1 = (Button)findViewById(R.id.button1);
         bt2 = (Button)findViewById(R.id.button2);
@@ -227,10 +232,34 @@ res.setText(res.getText()+"1");
         });
         btMS.setOnClickListener(new View.OnClickListener(){
            public void onClick(View v){
-
+memory= Double.parseDouble(res.getText().toString());
+               mem.setText(memory.toString());
            }
         });
+        btMR.setOnClickListener(new View.OnClickListener(){
+           public void onClick(View v){
+res.setText(memory.toString());
+           }
+        });
+btMC.setOnClickListener(new View.OnClickListener(){
+   public void onClick(View v){
+       memory=0.0;
+       mem.setText(memory.toString());
+   }
 
+});
+        btMinus.setOnClickListener(new View.OnClickListener(){
+           public void onClick(View v){
+
+
+              if((res.getText().toString().length() != 0)&& Double.parseDouble(res.getText().toString()) !=0.0) {
+                  minus = -1.0*Double.parseDouble(res.getText().toString());
+                  res.setText( minus.toString());
+               }
+
+               //
+           }
+        });
     }
 
     @Override
