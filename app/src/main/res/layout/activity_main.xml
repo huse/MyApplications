@@ -29,7 +29,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="20dp"
                         android:text="Memory: "
                         android:id="@+id/textView"
                      />
@@ -40,27 +40,60 @@
                         android:text=""
                         android:id="@+id/textViewMemory"
                         android:layout_weight="1"/>
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4">
+                    android:layout_height="40dp"
+                    android:layout_weight="2">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/textViewNum1"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/textViewOP" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:id="@+id/textViewNum2" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="2">
 
                     <TextView
                         android:layout_width="fill_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="40dp"
                         android:text=""
                         android:id="@+id/textViewMain"
                         android:layout_weight="3" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Formula"
-                        android:id="@+id/textViewFormula"
-                        android:layout_weight="1" />
                 </LinearLayout>
 
                 <!---          <EditText
