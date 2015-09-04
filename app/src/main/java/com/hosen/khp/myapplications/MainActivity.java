@@ -106,6 +106,7 @@ public class MainActivity extends Activity {
                bt2.setX(bt8.getX());
                 bt2.setY(bt8.getY());
                 bt1.setBottom(p);*/
+
                 //The random generator creates values between [0,256) for use as RGB values used below to create a random color
                 //We call the RelativeLayout object and we change the color.  The first parameter in argb() is the alpha.
                 restt.setBackgroundColor(Color.argb(255, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256) ));
