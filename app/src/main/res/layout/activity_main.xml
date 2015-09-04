@@ -71,7 +71,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:id="@+id/textViewOP" />
+                            android:id="@+id/textViewOP"
+                            android:textColor="#ff0000" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -96,15 +97,7 @@
                         android:layout_weight="3" />
                 </LinearLayout>
 
-                <!---          <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dp"
-                    android:id="@+id/editText"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_weight="3" />
-                    -->
+
 
             </LinearLayout>
         </LinearLayout>
@@ -172,7 +165,7 @@
                 android:text="1"
                 android:id="@+id/button1"
 
-                />
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="0dp"
@@ -181,7 +174,7 @@
                 android:text="2"
                 android:id="@+id/button2"
 
-                />
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="0dp"
@@ -190,7 +183,7 @@
                 android:text="3"
                 android:id="@+id/button3"
 
-                />
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="0dp"
@@ -200,7 +193,7 @@
                 android:id="@+id/buttonBack"
 
 
-                />
+                android:textColor="#0000ff" />
 
         </LinearLayout>
 
@@ -220,7 +213,8 @@
                 android:text="4"
                 android:id="@+id/button4"
 
-                android:layout_marginTop="0dp" />
+                android:layout_marginTop="0dp"
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="75dp"
@@ -229,7 +223,7 @@
                 android:text="5"
                 android:id="@+id/button5"
 
-                />
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="75dp"
@@ -237,7 +231,8 @@
                 android:text="6"
                 android:id="@+id/button6"
 
-                android:layout_weight=".25" />
+                android:layout_weight=".25"
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="75dp"
@@ -245,7 +240,7 @@
                 android:layout_weight=".25"
                 android:text="C"
                 android:id="@+id/buttonClear"
-                />
+                android:textColor="#ff0000" />
 
         </LinearLayout>
 
@@ -263,7 +258,7 @@
                 android:layout_weight=".25"
                 android:text="7"
                 android:id="@+id/button7"
-                />
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="75dp"
@@ -271,7 +266,8 @@
                 android:text="8"
                 android:id="@+id/button8"
 
-                android:layout_weight=".25" />
+                android:layout_weight=".25"
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="75dp"
@@ -280,7 +276,7 @@
                 android:text="9"
                 android:id="@+id/button9"
 
-                />
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="75dp"
@@ -310,7 +306,7 @@
                 android:layout_weight=".25"
                 android:text="."
                 android:id="@+id/buttonDot"
-                />
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="75dp"
@@ -321,7 +317,7 @@
 
 
                 android:layout_marginTop="0dp"
-                />
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="75dp"
@@ -330,7 +326,7 @@
                 android:text="="
                 android:id="@+id/buttonEqual"
 
-                />
+                android:textColor="#00ff00" />
 
             <Button
                 android:layout_width="75dp"

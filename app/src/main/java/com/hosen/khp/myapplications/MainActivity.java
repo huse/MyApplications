@@ -177,6 +177,7 @@ public class MainActivity extends Activity {
         btAdd.setOnClickListener(new View.OnClickListener(){
            public void onClick(View v) {
                if(operator==' '){
+                   tvOpt.setText(operator.toString());
                    try {
                        num1 = Double.parseDouble(res.getText().toString());
                    }catch(Exception e){
@@ -186,20 +187,60 @@ public class MainActivity extends Activity {
                     operator='+';
                     progress=true;
                     tvN2.setText("");}
-               else{
+               else if(operator=='+') {
+tvOpt.setText(operator.toString()+" ");
                     if (progress){
+
                    try {
                        num2 = Double.parseDouble(res.getText().toString());
                        num1=num1+num2;
+
                    }catch(Exception e){
                        System.out.print("Wrong button pressed");
                    }
 
                    tvN1.setText(num1.toString());
                    tvN2.setText(num2.toString());
-                   res.setText("");}
+                   res.setText("");
+                        progress=true;}
 
                }
+               else {
+
+                   if (progress){
+if(res.getText().length()==0){
+    tvOpt.setText(operator.toString()+" ");
+    try {
+        num1 = Double.parseDouble(res.getText().toString());
+    }catch(Exception e){
+        System.out.print("Wrong button pressed");
+    }
+    res.setText("");tvOpt.setText("+"+ " ");tvN1.setText(num1.toString());
+    operator='+';
+    progress=true;
+    tvN2.setText("");
+}
+
+else{
+                       try {
+
+
+                           num2 = Double.parseDouble(res.getText().toString());
+
+
+
+                       }catch(Exception e){
+                           System.out.print("Wrong button pressed");
+                       }
+                        Double resssult=operation();
+                       num1=resssult;
+                       tvN1.setText(resssult.toString());
+                       tvN2.setText("");
+                       tvOpt.setText("+"+ " ");
+                       res.setText("");
+                       operator='+';}
+
+               }}
            }
         });
         btSub.setOnClickListener(new View.OnClickListener(){
@@ -214,7 +255,8 @@ public class MainActivity extends Activity {
                     operator='-';
                     progress=true;
                     tvN2.setText("");}
-                else{
+                else if(operator=='-') {
+                    tvOpt.setText(operator.toString()+" ");
                     if (progress){
                         try {
                             num2 = Double.parseDouble(res.getText().toString());
@@ -228,6 +270,40 @@ public class MainActivity extends Activity {
                         res.setText("");}
 
                 }
+                else {
+
+                    if (progress){
+                        if(res.getText().length()==0){
+                            tvOpt.setText(operator.toString()+" ");
+                            try {
+                                num1 = Double.parseDouble(res.getText().toString());
+                            }catch(Exception e){
+                                System.out.print("Wrong button pressed");
+                            }
+                            res.setText("");tvOpt.setText("-"+ " ");tvN1.setText(num1.toString());
+                            operator='-';
+                            progress=true;
+                            tvN2.setText("");
+                        }else{
+                        try {
+
+
+                            num2 = Double.parseDouble(res.getText().toString());
+
+
+
+                        }catch(Exception e){
+                            System.out.print("Wrong button pressed");
+                        }
+                        Double resssult=operation();
+                        num1=resssult;
+                        tvN1.setText(resssult.toString());
+                        tvN2.setText("");
+                        tvOpt.setText("-"+ " ");
+                        res.setText("");
+                        operator='-';}
+
+                }}
             }
         });
         btMulti.setOnClickListener(new View.OnClickListener(){
@@ -242,7 +318,8 @@ public class MainActivity extends Activity {
                     operator='*';
                     progress=true;
                     tvN2.setText("");}
-                else{
+                else if(operator=='*') {
+                    tvOpt.setText(operator.toString()+" ");
                     if (progress){
                         try {
                             num2 = Double.parseDouble(res.getText().toString());
@@ -256,6 +333,42 @@ public class MainActivity extends Activity {
                         res.setText("");}
 
                 }
+                else {
+
+                    if (progress){
+                        if(res.getText().length()==0){
+                            tvOpt.setText(operator.toString()+" ");
+                            try {
+                                num1 = Double.parseDouble(res.getText().toString());
+                            }catch(Exception e){
+                                System.out.print("Wrong button pressed");
+                            }
+                            res.setText("");tvOpt.setText("*"+ " ");tvN1.setText(num1.toString());
+                            operator='*';
+                            progress=true;
+                            tvN2.setText("");
+                        }
+
+                        else{
+                        try {
+
+
+                            num2 = Double.parseDouble(res.getText().toString());
+
+
+
+                        }catch(Exception e){
+                            System.out.print("Wrong button pressed");
+                        }
+                        Double resssult=operation();
+                        num1=resssult;
+                        tvN1.setText(resssult.toString());
+                        tvN2.setText("");
+                        tvOpt.setText("*"+ " ");
+                        res.setText("");
+                        operator='*';}
+
+                }}
             }
         });
         btDevide.setOnClickListener(new View.OnClickListener(){
@@ -270,7 +383,8 @@ public class MainActivity extends Activity {
                     operator='/';
                     progress=true;
                     tvN2.setText("");}
-                else{
+                else if(operator=='/') {
+                    tvOpt.setText(operator.toString()+" ");
                     if (progress){
                         try {
                             num2 = Double.parseDouble(res.getText().toString());
@@ -284,6 +398,42 @@ public class MainActivity extends Activity {
                         res.setText("");}
 
                 }
+                else {
+
+                    if (progress){
+                        if(res.getText().length()==0){
+                            tvOpt.setText(operator.toString()+" ");
+                            try {
+                                num1 = Double.parseDouble(res.getText().toString());
+                            }catch(Exception e){
+                                System.out.print("Wrong button pressed");
+                            }
+                            res.setText("");tvOpt.setText("/"+ " ");tvN1.setText(num1.toString());
+                            operator='/';
+                            progress=true;
+                            tvN2.setText("");
+                        }
+
+                        else{
+                        try {
+
+
+                            num2 = Double.parseDouble(res.getText().toString());
+
+
+
+                        }catch(Exception e){
+                            System.out.print("Wrong button pressed");
+                        }
+                        Double resssult=operation();
+                        num1=resssult;
+                        tvN1.setText(resssult.toString());
+                        tvN2.setText("");
+                        tvOpt.setText("/"+ " ");
+                        res.setText("");
+                        operator='/';}
+
+                }}
             }
         });
         btPow.setOnClickListener(new View.OnClickListener(){
@@ -298,7 +448,8 @@ public class MainActivity extends Activity {
                     operator='^';
                     progress=true;
                     tvN2.setText("");}
-                else{
+                else if(operator=='^') {
+                    tvOpt.setText(operator.toString()+" ");
                     if (progress){
                         try {
                             num2 = Double.parseDouble(res.getText().toString());
@@ -312,6 +463,42 @@ public class MainActivity extends Activity {
                         res.setText("");}
 
                 }
+                else {
+
+                    if (progress){
+                        if(res.getText().length()==0){
+                            tvOpt.setText(operator.toString()+" ");
+                            try {
+                                num1 = Double.parseDouble(res.getText().toString());
+                            }catch(Exception e){
+                                System.out.print("Wrong button pressed");
+                            }
+                            res.setText("");tvOpt.setText("^"+ " ");tvN1.setText(num1.toString());
+                            operator='^';
+                            progress=true;
+                            tvN2.setText("");
+                        }
+
+                        else{
+                        try {
+
+
+                            num2 = Double.parseDouble(res.getText().toString());
+
+
+
+                        }catch(Exception e){
+                            System.out.print("Wrong button pressed");
+                        }
+                        Double resssult=operation();
+                        num1=resssult;
+                        tvN1.setText(resssult.toString());
+                        tvN2.setText("");
+                        tvOpt.setText("^"+ " ");
+                        res.setText("");
+                        operator='^';}
+
+                }}
             }
 
         });
@@ -327,7 +514,8 @@ public class MainActivity extends Activity {
                     operator='s';
                     progress=true;
                     tvN2.setText("");}
-                else{
+                else if(operator=='s') {
+                    tvOpt.setText(operator.toString()+" ");
                     if (progress){
                         try {
                             num2 = Double.parseDouble(res.getText().toString());
@@ -341,6 +529,42 @@ public class MainActivity extends Activity {
                         res.setText("");}
 
                 }
+                else {
+
+                    if (progress){
+                        if(res.getText().length()==0){
+                            tvOpt.setText(operator.toString()+" ");
+                            try {
+                                num1 = Double.parseDouble(res.getText().toString());
+                            }catch(Exception e){
+                                System.out.print("Wrong button pressed");
+                            }
+                            res.setText("");tvOpt.setText("Sqrt"+ " ");tvN1.setText(num1.toString());
+                            operator='s';
+                            progress=true;
+                            tvN2.setText("");
+                        }
+
+                        else{
+                        try {
+
+
+                            num2 = Double.parseDouble(res.getText().toString());
+
+
+
+                        }catch(Exception e){
+                            System.out.print("Wrong button pressed");
+                        }
+                        Double resssult=operation();
+                        num1=resssult;
+                        tvN1.setText(resssult.toString());
+                        tvN2.setText("");
+                        tvOpt.setText("Sqrt"+ " ");
+                        res.setText("");
+                        operator='s';}
+
+                }}
 
             }
         });
@@ -374,7 +598,7 @@ public class MainActivity extends Activity {
                         break;
 
                 };
-                if(res.getText().length()==0&&tvN1.getText().length()==0&&tvN2.getText().length()==0){}
+                if(res.getText().length()==0&&tvN1.getText().length()==0&&tvN2.getText().length()==0){System.out.print("Wrong button pressed");}
                else if (progress){
                 res.setText(result.toString());tvN2.setText(num2.toString());
                 num1=0.0;
@@ -417,9 +641,33 @@ btMC.setOnClickListener(new View.OnClickListener(){
     }
 
 
+public double operation() {
+    switch (operator) {
+        case '+':
+            result = num1 + num2;
+            break;
+        case '-':
+            result = num1 - num2;
+            break;
+        case '*':
+            result = num1 * num2;
+            break;
+        case '/':
+            result = num1 / num2;
+            break;
+        case '^':
+            result = Math.pow(num1, num2);
+            break;
+        case 's':
+            result = Math.pow(num1, (1 / num2));
+            break;
+        case ' ':
+            break;
 
 
-
+    }
+    return result;
+}
 
 
     @Override
