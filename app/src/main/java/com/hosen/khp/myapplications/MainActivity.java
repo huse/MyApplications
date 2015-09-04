@@ -1,12 +1,19 @@
 package com.hosen.khp.myapplications;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.Random;
 
 public class MainActivity extends Activity {
     Double num1=0.0;
@@ -15,8 +22,14 @@ public class MainActivity extends Activity {
     Double memory=0.0;
     Double minus = 0.0;
     Character operator = ' ';
-   boolean progress= true;
+    Character operatorSign=' ';
 
+    int shake=0;
+   boolean progress= true;
+    // The following are used for the shake detection
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+    private ShakeDetector mShakeDetector;
     /*final Button bt0,bt1,bt2,bt3,bt4,bt5,bt6,bt7,bt8,bt9,btDot,btAdd,btSub,btMulti,btDevide,btPow,btSqrt,
             btClear,btBack,btEqual,btMS,btMR,btMC,btMinus;*/
 
@@ -33,7 +46,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        final TextView restt = (TextView) findViewById(R.id.textViewMain);
         final TextView res = (TextView) findViewById(R.id.textViewMain);
         final TextView mem = (TextView) findViewById(R.id.textViewMemory);
         final TextView tvN1 = (TextView) findViewById(R.id.textViewNum1);
@@ -64,6 +77,49 @@ public class MainActivity extends Activity {
         final Button   btMR = (Button)findViewById(R.id.buttonMR);
         final Button   btMC = (Button)findViewById(R.id.buttonMC);
         final Button   btMinus = (Button)findViewById(R.id.buttonMinus);
+
+        // ShakeDetector initialization
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mAccelerometer = mSensorManager
+                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mShakeDetector = new ShakeDetector();
+        mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
+
+            @Override
+            public void onShake(int count) {
+				/*
+				 * The following method, "handleShakeEvent(count):" is a stub //
+				 * method you would use to setup whatever you want done once the
+				 * device has been shook.
+				 */
+
+
+                restt.setText(count + "");
+
+               // restt.setTextColor(0xFFF06D2F);
+                Random rand = new Random();
+;
+                //tvN1.setText(bb+"");
+               /* tvN2.setText(bt7.getLeft()+"");
+                mem.setText(bt9.getX()+"");
+                int p= bt2.getBottom();
+               bt2.setX(bt8.getX());
+                bt2.setY(bt8.getY());
+                bt1.setBottom(p);*/
+                //The random generator creates values between [0,256) for use as RGB values used below to create a random color
+                //We call the RelativeLayout object and we change the color.  The first parameter in argb() is the alpha.
+                restt.setBackgroundColor(Color.argb(255, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256) ));
+                handleShakeEvent(count);
+                restt.setTextColor(Color.argb(255, rand.nextInt(256), rand.nextInt(256), rand.nextInt(256) ));
+
+            }
+
+            private void handleShakeEvent(int count) {
+                shake=count;
+            }
+        });
+
+
 
 
         bt1.setOnClickListener(new View.OnClickListener() {
@@ -176,8 +232,12 @@ public class MainActivity extends Activity {
         });
         btAdd.setOnClickListener(new View.OnClickListener(){
            public void onClick(View v) {
-               if(operator==' '){
-                   tvOpt.setText(operator.toString());
+
+               operatorSign= btAdd.getText().charAt(0);
+                 if(operator==' '){
+
+                  tvOpt.setText(operator.toString());
+
                    try {
                        num1 = Double.parseDouble(res.getText().toString());
                    }catch(Exception e){
@@ -188,9 +248,8 @@ public class MainActivity extends Activity {
                     progress=true;
                     tvN2.setText("");}
                else if(operator=='+') {
-tvOpt.setText(operator.toString()+" ");
+                    tvOpt.setText(operator.toString()+" ");
                     if (progress){
-
                    try {
                        num2 = Double.parseDouble(res.getText().toString());
                        num1=num1+num2;
@@ -206,7 +265,6 @@ tvOpt.setText(operator.toString()+" ");
 
                }
                else {
-
                    if (progress){
 if(res.getText().length()==0){
     tvOpt.setText(operator.toString()+" ");
@@ -221,7 +279,6 @@ if(res.getText().length()==0){
     tvN2.setText("");
 }
 
-else{
                        try {
 
 
@@ -241,7 +298,7 @@ else{
                        operator='+';}
 
                }}
-           }
+
         });
         btSub.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -610,13 +667,15 @@ else{
         });
         btMS.setOnClickListener(new View.OnClickListener(){
            public void onClick(View v){
+               if(res.getText().length()!=0){
 memory= Double.parseDouble(res.getText().toString());
-               mem.setText(memory.toString());
+               mem.setText(memory.toString());}
            }
         });
         btMR.setOnClickListener(new View.OnClickListener(){
            public void onClick(View v){
-res.setText(memory.toString());
+
+               res.setText(memory.toString());
            }
         });
 btMC.setOnClickListener(new View.OnClickListener(){
@@ -641,7 +700,9 @@ btMC.setOnClickListener(new View.OnClickListener(){
     }
 
 
-public double operation() {
+
+
+    public double operation() {
     switch (operator) {
         case '+':
             result = num1 + num2;
@@ -676,7 +737,19 @@ public double operation() {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Add the following line to register the Session Manager Listener onResume
+        mSensorManager.registerListener(mShakeDetector, mAccelerometer,	SensorManager.SENSOR_DELAY_UI);
+    }
 
+    @Override
+    public void onPause() {
+        // Add the following line to unregister the Sensor Manager onPause
+        mSensorManager.unregisterListener(mShakeDetector);
+        super.onPause();
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
